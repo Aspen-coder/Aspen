@@ -2,8 +2,9 @@
 #define UTIL_H
 #include <stdio.h>
 #include <stdlib.h>
+#include "lexer.h"
 
-char* read_file(const char* filename);
+Lexer* read_file(const char* filename);
 
 #endif //UTIL_H
 

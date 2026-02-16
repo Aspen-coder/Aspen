@@ -1,4 +1,5 @@
 #include "../include/tokenlist.h"
+#include "../include/lexer.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,9 +15,18 @@ TokenList* tokenlist_init(){
     return tok_list;
 }
 
-TokenList* tokenlist_build(char* text){
-    TokenList* tok_list = tokenlist_init();
-    return tok_list; 
+TokenList* tokenlist_build(TokenList* tokenlist, Lexer* lexer){
+    //TODO: build out function
+    assert(tokenlist != NULL && lexer != NULL);
+    while(!lexer_end(lexer)){
+        Token* tok = lexer_parse_next_token(lexer);
+        if(tok != NULL)
+            tokenlist_add(tokenlist, tok);
+        else{
+            printf("[WARNING]: tokenlist received NULL token\n");
+        }
+    }
+    return tokenlist; 
 }
 
 bool tokenlist_add(TokenList* tokenlist, Token* token){

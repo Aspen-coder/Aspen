@@ -9,20 +9,14 @@ int main(int argc, char** argv){
         perror("Must pass file path as argument");
         return EXIT_FAILURE;
     }
-    char* contents = read_file(argv[1]);
-    printf("%s", contents);
+    Lexer* lexer = read_file(argv[1]);
+    printf("%s", lexer->text);
     
     TokenList* tok_list = tokenlist_init();
-    Token* tok = token_create(TT_NUM, 3);
-    Token* tok2 = token_create(TT_NUM, 5);
-    Token* tok3 = token_create(TT_PLUS, -1);
-
-    tokenlist_add(tok_list, tok);
-    tokenlist_add(tok_list, tok2);
-    tokenlist_add(tok_list, tok3);
+    tokenlist_build(tok_list, lexer);
     tokenlist_print(tok_list);
      
-    free(contents);
+    lexer_destroy(lexer);
     tokenlist_destroy(tok_list);
 
     return EXIT_SUCCESS;

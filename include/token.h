@@ -15,7 +15,7 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    int value;
+    int value; //TODO: change to size_t
 } Token;
 
 Token* token_create(TokenType tok_type, int value);

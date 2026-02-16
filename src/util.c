@@ -1,11 +1,13 @@
 #include "../include/util.h"
+#include "../include/lexer.h"
 #include <assert.h>
 
-char* read_file(const char* filename){
+Lexer* read_file(const char* filename){
     assert(filename != NULL);
     char* fcontent = NULL;
     int fsize = 0;
     FILE* fp;
+    Lexer* lexer;
 
 
     fp = fopen(filename, "r");
@@ -21,7 +23,8 @@ char* read_file(const char* filename){
 
         fclose(fp);
     }
-    return fcontent;
+    lexer = lexer_create(fcontent, fsize);
+    return lexer;
 }
 
 

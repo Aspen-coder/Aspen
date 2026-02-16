@@ -2,6 +2,7 @@
 #define TOKENLIST_H
 #include "token.h"
 #include <stdlib.h>
+#include "lexer.h"
 
 typedef struct {
     Token** tokens;
@@ -11,7 +12,7 @@ typedef struct {
 
 TokenList* tokenlist_init();
 
-TokenList* tokenlist_build(char* text);
+TokenList* tokenlist_build(TokenList* tokenlist, Lexer* lexer);
 
 bool tokenlist_add(TokenList* tokenlist, Token* token);
 
